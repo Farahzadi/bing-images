@@ -28,9 +28,14 @@ def main():
     save_content(json.dumps(json_result, indent=2),
                  config.get('output_path'), 'result.json')
     print(Fore.GREEN + f'saved api result in "{config.get("output_path")}" with name "result.json"')
+
+    first = True
     for item in json_result:
         image_name = item['url'].split('/')[-1]
         save_image(f'http://www.bing.com/{item["url"]}', config.get('output_path'), image_name)
+        if first:
+            save_image(f'http://www.bing.com/{item["url"]}', config.get('output_path'), '_latest.jpg')
+            first = False
 
 
 if __name__ == '__main__':
