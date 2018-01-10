@@ -31,10 +31,12 @@ def main():
 
     first = True
     for item in json_result:
-        image_name = item['url'].split('/')[-1]
-        save_image(f'http://www.bing.com/{item["url"]}', config.get('output_path'), image_name)
+        full_image_name = item['url'].split('/')[-1]
+        extension = full_image_name.split('.')[-1]
+        image_name = full_image_name.split('_')[0]
+        save_image(f'http://www.bing.com/{item["url"]}', config.get('output_path'), image_name + '.' + extension)
         if first:
-            save_image(f'http://www.bing.com/{item["url"]}', config.get('output_path'), '_latest.jpg')
+            save_image(f'http://www.bing.com/{item["url"]}', config.get('output_path'), '_latest.' + extension)
             first = False
 
 
