@@ -5,6 +5,7 @@ get images of day from bing and save it
 import json
 import sys
 
+
 import requests
 from colorama import Fore, init
 
